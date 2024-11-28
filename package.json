@@ -16,7 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:cucumber": "cucumber-js",
+    "test:cucumber": "cucumber-js tests/features/studyClass.feature --require tests/stepDefinitions/studyClassSteps.cjs",
     "eject": "react-scripts eject",
     "test:cypress": "cypress open",
     "test:cypress:headless": "cypress run"

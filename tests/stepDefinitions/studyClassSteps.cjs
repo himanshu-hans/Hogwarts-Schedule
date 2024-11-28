@@ -9,7 +9,6 @@ const assert = require('assert');
 // })();
 
 // const chai = require('chai');
-const logger = require('../logger.cjs');
 // var expect = chai.expect
 
 
