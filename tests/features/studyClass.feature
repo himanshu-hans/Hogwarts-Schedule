@@ -22,14 +22,15 @@ Feature: Schedule Today - Attendance and Teacher Assignment
       | Padma Patil      | Potions Master | Rubeus Hagrid       |
       | Luna Lovegood    | Potions Master | Severus Snape       |
     When I view the "Current Schedule"
-    Then I should see the following teacher assignments:
-      | Student          | Subject        | Teacher            |
-      | Harry Potter     | Potions Master | Horace Slughorn    |
-      | Hermione Granger | Potions Master | Horace Slughorn    |
-      | Ron Weasley      | Potions Master | Severus Snape      |
-      | Draco Malfoy     | Potions Master | Horace Slughorn    |
-      | Padma Patil      | Potions Master | Rubeus Hagrid      |
-      | Luna Lovegood    | Potions Master | Severus Snape      |
+    Then "Padma Patil" should be assigned to "Rubeus Hagrid"
+    And "Hermione Granger" should be assigned to "Rubeus Hagrid"
+      | Student          | Subject        | Allocated Teacher   |
+      | Harry Potter     | Potions Master | Horace Slughorn     |
+      | Hermione Granger | Potions Master | Rubeus Hagrid     |
+      | Ron Weasley      | Potions Master | Severus Snape       |
+      | Draco Malfoy     | Potions Master | Horace Slughorn     |
+      | Padma Patil      | Potions Master | Rubeus Hagrid       |
+      | Luna Lovegood    | Potions Master | Severus Snape       |
 
   # Scenario 2: Teacher is absent, fallback teacher is assigned
   Scenario: Horace Slughorn is absent

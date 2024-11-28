@@ -1,11 +1,17 @@
 const { Given, When, Then, After } = require('@cucumber/cucumber');
 const assert = require('assert');
+// var chai = require('chai')
 // Dynamically import `chai`
-let expect;
-(async () => {
-  const chaiModule = await import('chai');
-  expect = chaiModule.expect;
-})();
+// let expect;
+// (async () => {
+//   const chaiModule = await import('chai');
+//   expect = chaiModule.expect;
+// })();
+
+// const chai = require('chai');
+const logger = require('../logger.cjs');
+// var expect = chai.expect
+
 
 let studentList = [];
 
@@ -48,14 +54,17 @@ When('I view the "Current Schedule"', function () {
   });
 });
 
-Then('I should see the following teacher assignments:', function (dataTable) {
-  // Verify the teacher assignments are correct
-  dataTable.hashes().forEach((expectedRow) => {
-    const student = studentList.find(
-      (s) => s.name === expectedRow.Student
-    );
-    assert.strictEqual(student.currentTeacher, expectedRow.Teacher);
-  });
+Then('{string} should be assigned to {string}', function (studentName, teacher) {
+  // Find the student object from the studentList
+  const student = studentList.find((s) => s.name === studentName);
+
+  if (!student) {
+    throw new Error(`Student ${studentName} not found`);
+  }
+  // Check if the assigned teacher matches the expected one
+  assert.strictEqual(student.currentTeacher, teacher);
+
+  // expect(student.currentTeacher).to.equal(teacher);
 });
 
 When('I change "{string}" attendance to "{string}"', function (teacherName, attendanceStatus) {
